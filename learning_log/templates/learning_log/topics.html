@@ -1,0 +1,26 @@
+{% extends "learning_log/base.html" %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+<h3>Topic: {{topics.text}}</h3>
+{% endblock page_header %}
+
+{% block content %}
+<a href="{% url "learning_log:new_entry" topics.id %}"
+class="link-info link-offset-2 text-primary-emphasis link-underline-opacity-25 link-underline-opacity-100-hover
+       fs-5">Add new Entry</a>
+    {% for entry in entries %}
+      <div class="card mb-3">
+        <h4 class="card-header">
+          {{entry.date_added|date:'M d, Y H:i'}}
+          <small>
+            <a href="{% url "learning_log:edit_entry" entry.id %}" 
+            class="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover fs-6" >Edit Entry</a>
+          </small>
+        </h4>
+        <div class="card-body">{{ entry.text|linebreaks }}</div>
+      </div>
+    {% empty %}
+      <p>There are no entry for this topic yet.</p>
+    {% endfor %}
+{% endblock content %}

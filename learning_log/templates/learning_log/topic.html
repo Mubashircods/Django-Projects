@@ -1,0 +1,25 @@
+{% extends 'learning_log/base.html' %}
+
+{% block page_header %}
+<h3 class="font-monospace fs-3 fw-bolder text-center">Topics</h3>
+{% endblock page_header %}
+{% block content %}
+<ul class="list-gorup border-bottom pb-2 mb-4">
+    {% for topic in topics %}
+        <li class="list-group list-gorup-flush">
+          <a class="list-group-item" href="{% url 'learning_log:topics' topic.id %}">
+            {{topic.text}}
+          </a>
+        </li>
+    {% empty %}
+      <li class="list-gorup-item">No topic have been added yet.</li>
+    {% endfor %}
+</ul>
+<div class="d-grid gap-2 col-6 mx-auto">
+  <button class="btn btn-primary-emphasis" type="button"><a href="{% url "learning_log:new_topic" %}"
+    class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-4">Add New Topic</a></button>
+</div>
+
+{% endblock content %}
+
+
