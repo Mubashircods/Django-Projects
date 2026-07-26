@@ -21,7 +21,6 @@ applications:
           expires: 1h
           allow: true
 
-    disk: 512
 
     mounts:
       "logs":
